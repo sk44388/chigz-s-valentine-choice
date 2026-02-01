@@ -135,12 +135,120 @@
     @apply text-white font-semibold px-10 py-4 rounded-full shadow-md transition-all duration-150;
   }
 
+  .btn-secondary {
+    @apply bg-card text-foreground font-semibold px-8 py-3 rounded-full shadow-md transition-all duration-300 border border-primary/30;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-primary/10 border-primary/50;
+    transform: scale(1.05);
+  }
+
   .heart-float {
     animation: float 3s ease-in-out infinite;
   }
 
   .heart-pulse {
     animation: heartPulse 1.5s ease-in-out infinite;
+  }
+
+  /* Gift box styles */
+  .gift-box {
+    @apply block w-full transition-all duration-300;
+  }
+
+  .gift-box:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  .gift-box-inner {
+    @apply relative bg-card/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border-2 border-primary/30 transition-all duration-300;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gift-box:hover .gift-box-inner {
+    @apply border-primary/60;
+    box-shadow: 0 20px 50px hsl(350, 80%, 60%, 0.25);
+  }
+
+  .gift-box-inner.opened {
+    @apply border-primary/20 opacity-80;
+  }
+
+  .gift-ribbon {
+    @apply absolute top-0 left-1/2 -translate-x-1/2 w-8 h-full bg-primary/20 rounded-full;
+  }
+
+  .gift-ribbon::before {
+    content: '';
+    @apply absolute top-0 left-1/2 -translate-x-1/2 w-16 h-8 bg-primary/30 rounded-full;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .gift-icon {
+    @apply relative z-10 bg-background/80 p-6 rounded-full shadow-lg border border-primary/20;
+  }
+
+  .opened-badge {
+    @apply absolute top-4 right-4 bg-primary/20 text-primary text-xs px-3 py-1 rounded-full;
+  }
+
+  /* Letter styles */
+  .letter-paper {
+    @apply bg-card/95 backdrop-blur-sm rounded-lg p-8 md:p-12 shadow-2xl border border-primary/20;
+    background: linear-gradient(180deg, hsl(350, 100%, 99%) 0%, hsl(340, 60%, 97%) 100%);
+  }
+
+  /* Video styles */
+  .video-container {
+    @apply relative rounded-2xl overflow-hidden shadow-2xl;
+  }
+
+  .video-placeholder {
+    @apply relative aspect-video bg-card/60 backdrop-blur-sm rounded-2xl border border-primary/20 flex items-center justify-center cursor-pointer transition-all duration-300;
+  }
+
+  .video-placeholder:hover {
+    @apply border-primary/40;
+    box-shadow: 0 10px 40px hsl(350, 80%, 60%, 0.2);
+  }
+
+  .video-play-overlay {
+    @apply absolute inset-0 flex items-center justify-center z-10;
+  }
+
+  .play-button {
+    @apply bg-primary rounded-full p-6 shadow-lg transition-all duration-300;
+  }
+
+  .play-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px hsl(350, 80%, 60%, 0.5);
+  }
+
+  .video-placeholder-content {
+    @apply absolute inset-0 flex flex-col items-center justify-center;
+  }
+
+  /* Poem styles */
+  .poem-container {
+    @apply bg-card/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-xl border border-primary/20;
+  }
+
+  .poem-verse {
+    @apply font-romantic text-xl md:text-2xl text-foreground leading-relaxed space-y-2;
+  }
+
+  .poem-verse p {
+    @apply my-1;
+  }
+
+  .poem-divider {
+    @apply flex justify-center my-6;
   }
 }
 
