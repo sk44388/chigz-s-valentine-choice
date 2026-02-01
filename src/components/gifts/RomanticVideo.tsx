@@ -56,7 +56,7 @@ const RomanticVideo = ({ onClose }: RomanticVideoProps) => {
               {/* Romantic video embed - using a romantic YouTube video */}
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/450p7goxZqg?autoplay=1&rel=0"
+                src="https://www.youtube.com/embed/7fHIpHu1_aY?autoplay=1&rel=0"
                 title="Romantic Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
