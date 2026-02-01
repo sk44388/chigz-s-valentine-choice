@@ -1,10 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Heart, Sparkles } from 'lucide-react';
 import FloatingHearts from './FloatingHearts';
 import CelebrationScreen from './CelebrationScreen';
+import GiftSelection from './GiftSelection';
+
+type Screen = 'proposal' | 'gifts' | 'celebration';
 
 const ValentineProposal = () => {
-  const [showCelebration, setShowCelebration] = useState(false);
+  const [currentScreen, setCurrentScreen] = useState<Screen>('proposal');
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
   const [hasMovedNo, setHasMovedNo] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,11 +34,19 @@ const ValentineProposal = () => {
   };
 
   const handleYesClick = () => {
-    setShowCelebration(true);
+    setCurrentScreen('gifts');
   };
 
-  if (showCelebration) {
+  const handleGiftsComplete = () => {
+    setCurrentScreen('celebration');
+  };
+
+  if (currentScreen === 'celebration') {
     return <CelebrationScreen />;
+  }
+
+  if (currentScreen === 'gifts') {
+    return <GiftSelection onComplete={handleGiftsComplete} />;
   }
 
   return (
