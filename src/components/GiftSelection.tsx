@@ -79,7 +79,7 @@ const GiftSelection = ({ onComplete }: GiftSelectionProps) => {
         </div>
 
         {/* Gift boxes */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 mt-12 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12">
           {/* Gift 1: Love Letter */}
           <button
             onClick={() => handleGiftOpen('letter')}
@@ -88,12 +88,12 @@ const GiftSelection = ({ onComplete }: GiftSelectionProps) => {
             <div className={`gift-box-inner ${openedGifts.has('letter') ? 'opened' : ''}`}>
               <div className="gift-ribbon" />
               <div className="gift-icon">
-                <Mail size={36} className="text-primary" />
+                <Mail size={48} className="text-primary" />
               </div>
-              <h3 className="font-romantic text-2xl mt-6 relative z-10">
+              <h3 className="font-romantic text-2xl text-foreground mt-4">
                 A Love Letter
               </h3>
-              <p className="text-sm mt-2 relative z-10">
+              <p className="text-muted-foreground text-sm mt-2">
                 Words from my heart
               </p>
               {openedGifts.has('letter') && (
@@ -110,12 +110,12 @@ const GiftSelection = ({ onComplete }: GiftSelectionProps) => {
             <div className={`gift-box-inner ${openedGifts.has('video') ? 'opened' : ''}`}>
               <div className="gift-ribbon" />
               <div className="gift-icon">
-                <Video size={36} className="text-primary" />
+                <Video size={48} className="text-primary" />
               </div>
-              <h3 className="font-romantic text-2xl mt-6 relative z-10">
+              <h3 className="font-romantic text-2xl text-foreground mt-4">
                 A Special Video
               </h3>
-              <p className="text-sm mt-2 relative z-10">
+              <p className="text-muted-foreground text-sm mt-2">
                 Something beautiful for you
               </p>
               {openedGifts.has('video') && (
@@ -132,12 +132,12 @@ const GiftSelection = ({ onComplete }: GiftSelectionProps) => {
             <div className={`gift-box-inner ${openedGifts.has('poem') ? 'opened' : ''}`}>
               <div className="gift-ribbon" />
               <div className="gift-icon">
-                <Heart size={36} className="text-primary fill-primary" />
+                <Heart size={48} className="text-primary fill-primary" />
               </div>
-              <h3 className="font-romantic text-2xl mt-6 relative z-10">
+              <h3 className="font-romantic text-2xl text-foreground mt-4">
                 A Love Poem
               </h3>
-              <p className="text-sm mt-2 relative z-10">
+              <p className="text-muted-foreground text-sm mt-2">
                 Verses just for you
               </p>
               {openedGifts.has('poem') && (

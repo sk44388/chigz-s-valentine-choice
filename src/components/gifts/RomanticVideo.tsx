@@ -1,6 +1,5 @@
 import { Heart, X, Play, Sparkles } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { useBackgroundMusic } from '@/hooks/useBackgroundMusic';
+import { useState } from 'react';
 
 interface RomanticVideoProps {
   onClose: () => void;
@@ -8,29 +7,12 @@ interface RomanticVideoProps {
 
 const RomanticVideo = ({ onClose }: RomanticVideoProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const { pause: pauseMusic, play: playMusic, isPlaying: isMusicPlaying } = useBackgroundMusic();
-  const wasMusicPlayingRef = useState(false);
 
-  // Pause background music when entering video section
-  useEffect(() => {
-    wasMusicPlayingRef[1](isMusicPlaying);
-    if (isMusicPlaying) {
-      pauseMusic();
-    }
-  }, []);
-
-  const handleClose = () => {
-    // Resume music if it was playing before
-    if (wasMusicPlayingRef[0]) {
-      playMusic();
-    }
-    onClose();
-  };
   return (
     <div className="celebration-bg min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-8">
       {/* Close button */}
       <button
-        onClick={handleClose}
+        onClick={onClose}
         className="absolute top-6 right-6 z-20 p-2 rounded-full bg-card/80 hover:bg-card transition-colors"
       >
         <X size={24} className="text-foreground" />
@@ -99,7 +81,7 @@ const RomanticVideo = ({ onClose }: RomanticVideoProps) => {
 
         {/* Back button */}
         <div className="text-center mt-8">
-          <button onClick={handleClose} className="btn-secondary">
+          <button onClick={onClose} className="btn-secondary">
             Back to Gifts 🎁
           </button>
         </div>
