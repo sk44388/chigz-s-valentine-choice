@@ -1,5 +1,5 @@
 import { Heart, X, Play, Sparkles } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useBackgroundMusic } from '@/hooks/useBackgroundMusic';
 
 interface RomanticVideoProps {
@@ -8,25 +8,24 @@ interface RomanticVideoProps {
 
 const RomanticVideo = ({ onClose }: RomanticVideoProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const { fadeOut, fadeIn, isPlaying: isMusicPlaying } = useBackgroundMusic();
-  const wasMusicPlayingRef = useRef(false);
+  const { pause: pauseMusic, play: playMusic, isPlaying: isMusicPlaying } = useBackgroundMusic();
+  const wasMusicPlayingRef = useState(false);
 
-  // Fade out background music when entering video section
+  // Pause background music when entering video section
   useEffect(() => {
-    wasMusicPlayingRef.current = isMusicPlaying;
+    wasMusicPlayingRef[1](isMusicPlaying);
     if (isMusicPlaying) {
-      fadeOut();
+      pauseMusic();
     }
   }, []);
 
   const handleClose = () => {
-    // Fade in music if it was playing before
-    if (wasMusicPlayingRef.current) {
-      fadeIn();
+    // Resume music if it was playing before
+    if (wasMusicPlayingRef[0]) {
+      playMusic();
     }
     onClose();
   };
-
   return (
     <div className="celebration-bg min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-8">
       {/* Close button */}
