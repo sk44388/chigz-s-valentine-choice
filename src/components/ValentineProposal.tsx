@@ -1,17 +1,40 @@
 import { useState, useRef } from 'react';
-import { Heart, Sparkles } from 'lucide-react';
+import { Heart, Sparkles, Volume2, VolumeX } from 'lucide-react';
 import FloatingHearts from './FloatingHearts';
 import CelebrationScreen from './CelebrationScreen';
 import GiftSelection from './GiftSelection';
+import { BackgroundMusicProvider, useBackgroundMusic } from '@/hooks/useBackgroundMusic';
 
 type Screen = 'proposal' | 'gifts' | 'celebration';
 
-const ValentineProposal = () => {
+// YouTube video ID for Raindance by Tems & Dave
+const RAINDANCE_YOUTUBE_ID = 'dWmU6Z9k1t0';
+
+const MusicControl = () => {
+  const { isPlaying, toggle } = useBackgroundMusic();
+  
+  return (
+    <button
+      onClick={toggle}
+      className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-card/80 hover:bg-card transition-colors shadow-lg border border-primary/20"
+      aria-label={isPlaying ? 'Mute music' : 'Play music'}
+    >
+      {isPlaying ? (
+        <Volume2 size={24} className="text-primary" />
+      ) : (
+        <VolumeX size={24} className="text-muted-foreground" />
+      )}
+    </button>
+  );
+};
+
+const ValentineContent = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>('proposal');
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
   const [hasMovedNo, setHasMovedNo] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const noButtonRef = useRef<HTMLButtonElement>(null);
+  const { play: playMusic } = useBackgroundMusic();
 
   const moveNoButton = () => {
     if (!containerRef.current || !noButtonRef.current) return;
@@ -35,6 +58,8 @@ const ValentineProposal = () => {
 
   const handleYesClick = () => {
     setCurrentScreen('gifts');
+    // Start playing background music when user clicks Yes
+    playMusic();
   };
 
   const handleGiftsComplete = () => {
@@ -114,6 +139,18 @@ const ValentineProposal = () => {
         )}
       </div>
     </div>
+  );
+};
+
+// Audio URL for Raindance - using a placeholder that can be replaced with actual audio file
+const MUSIC_URL = `https://www.youtube.com/watch?v=${RAINDANCE_YOUTUBE_ID}`;
+
+const ValentineProposal = () => {
+  return (
+    <BackgroundMusicProvider src="/raindance.mp3">
+      <MusicControl />
+      <ValentineContent />
+    </BackgroundMusicProvider>
   );
 };
 
