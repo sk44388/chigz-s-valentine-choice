@@ -147,7 +147,7 @@ const MUSIC_URL = `https://www.youtube.com/watch?v=${RAINDANCE_YOUTUBE_ID}`;
 
 const ValentineProposal = () => {
   return (
-    <BackgroundMusicProvider src="/raindance.mp3">
+    <BackgroundMusicProvider src="/raindance.mp3" autoPlay={true}>
       <MusicControl />
       <ValentineContent />
     </BackgroundMusicProvider>
